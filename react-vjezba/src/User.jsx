@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import EditForm from './EditForm';
+import { Component } from "react";
+import EditForm from "./EditForm";
 
 export default class User extends Component {
     state = {
@@ -21,7 +21,7 @@ export default class User extends Component {
     };
 
     render() {
-        const { index, user } = this.props;
+        const { index, user, onSave } = this.props;
         const { isEditName, isEditSurname, isEditAge } = this.state;
 
         return (
@@ -29,23 +29,40 @@ export default class User extends Component {
                 <td>{index}.</td>
                 <td>
                     {!isEditName && (
-                        <span className='link-primary' onClick={this.handleChangeEditName}>
+                        <span
+                            className="link-primary"
+                            onClick={this.handleChangeEditName}
+                        >
                             {user.ime}
                         </span>
                     )}
 
-                    {isEditName && <EditForm text={user.ime} id={user.id} type='ime' onCancel={this.handleChangeEditName} />}
+                    {isEditName && (
+                        <EditForm
+                            text={user.ime}
+                            id={user.id}
+                            type="ime"
+                            onCancel={this.handleChangeEditName}
+                            onSave={onSave}
+                        />
+                    )}
                 </td>
                 <td>
                     {!isEditSurname && (
-                        <span className='link-primary' onClick={this.handleChangeEditSurname}>
+                        <span
+                            className="link-primary"
+                            onClick={this.handleChangeEditSurname}
+                        >
                             {user.prezime}
                         </span>
                     )}
                 </td>
                 <td>
                     {!isEditAge && (
-                        <span className='link-primary' onClick={this.handleChangeEditAge}>
+                        <span
+                            className="link-primary"
+                            onClick={this.handleChangeEditAge}
+                        >
                             {user.dob}
                         </span>
                     )}
